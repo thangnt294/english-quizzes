@@ -1,0 +1,149 @@
+.title {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    text-align: center;
+}
+
+.title > *:not(:last-child) {
+    margin-bottom: 1.5rem;
+}
+
+/* Styling Buttons */
+.main-button,
+.main-button:visited {
+    padding: 2rem 6rem;
+    font-size: 1.8rem;
+    letter-spacing: 0.3rem;
+    border: none;
+    border-radius: 4rem;
+    background-color: #0072ff;
+    color: #fff;
+    /*Animation stuff*/
+    animation: buttonUp 1s ease-in 1.5s;
+    animation-fill-mode: backwards;
+    position: relative;
+    transition: all 0.2s;
+    text-transform: uppercase;
+}
+
+.main-button::after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.5s;
+    border-radius: 4rem;
+    background-color: #0072ff;
+}
+
+.main-button:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.main-button:active {
+    transform: translateY(0);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+/* Get rid of outline */
+button,
+button:visited,
+button:active,
+button:focus {
+    outline: none;
+    outline-color: transparent;
+}
+
+.main-button:hover::after {
+    transform: scale(1.4, 1.6);
+    opacity: 0;
+}
+
+.title > h1 {
+    font-size: 4.5rem;
+    letter-spacing: 0.5rem;
+    animation: textLeftIn 1s linear 0.5s;
+    animation-fill-mode: backwards;
+}
+
+.title > h3 {
+    font-size: 2rem;
+    letter-spacing: 0.15rem;
+    animation: textRightIn 1s linear 0.5s;
+    animation-fill-mode: backwards;
+}
+
+.login-text {
+    animation: textUp 1s ease-in 1.5s;
+    animation-fill-mode: backwards;
+}
+
+.login-text > * {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+/* Animation */
+@keyframes buttonUp {
+    0% {
+        transform: translateY(2rem);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes textUp {
+    0% {
+        transform: translateY(2rem);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes textLeftIn {
+    0% {
+        transform: translateX(-4rem);
+        opacity: 0;
+    }
+
+    80% {
+        transform: translateX(1.5rem);
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes textRightIn {
+    0% {
+        transform: translateX(4rem);
+        opacity: 0;
+    }
+
+    80% {
+        transform: translateX(-1.5rem);
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
