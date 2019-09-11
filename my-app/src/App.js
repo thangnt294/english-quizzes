@@ -1,23 +1,24 @@
 import React from 'react'
 import StartPage from './components/StartPage'
-import IntroModal from './components/IntroModal'
+import RenderModal from './components/RenderModal'
 
 function App() {
-  const [modalShow, setModalShow] = React.useState(false);
+	const [modalShow, setModalShow] = React.useState(false)
 
-  function showModal() {
-    setModalShow(true)
-  }
+	function showModal() {
+		setModalShow(true)
+	}
 
-  return (
-    <div>
-      <StartPage showModal={showModal} />
-      <IntroModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
-    </div>
-  )
+	function hideModal() {
+		setModalShow(false)
+	}
+
+	return (
+		<div>
+			<StartPage showModal={showModal} />
+			<RenderModal show={modalShow} onHide={hideModal} />
+		</div>
+	)
 }
 
 export default App

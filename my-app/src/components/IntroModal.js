@@ -4,9 +4,10 @@ import Button from 'react-bootstrap/Button'
 import '../css/IntroModal.css'
 
 function IntroModal(props) {
+    const { startProgram, isStart, ...rest } = props
     return (
         <Modal
-            {...props}
+            {...rest}
             aria-labelledby="contained-modal-title-vcenter"
             centered
             className="modal"
@@ -23,7 +24,7 @@ function IntroModal(props) {
                 <p>Once you're ready, click the button below.</p>
             </Modal.Body>
             <Modal.Footer className="modal-footer">
-                <Button className="ready-button">I'm Ready!</Button>
+                <Button className="ready-button" onClick={startProgram}>I'm Ready!</Button>
             </Modal.Footer>
         </Modal>
     );
