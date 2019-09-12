@@ -39,18 +39,24 @@
     outline: transparent;
 }
 
-.modal-body > p {
+.modal-body > * {
     font-size: 1.5rem;
 }
 
-.ready-button {
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.custom-button {
     padding: 1rem 2.5rem;
     font-size: 1.5rem;
-    outline: none;
+    outline: transparent;
 }
 
-.ready-button:focus,
-.ready-button:active,
-.ready-button:visited {
-    outline: none;
+.custom-button:focus,
+.custom-button:active,
+.custom-button:visited {
+    outline: transparent;
 }

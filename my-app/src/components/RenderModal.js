@@ -9,7 +9,8 @@ class RenderModal extends Component {
         this.state = {
             questionsBank: [],
             count: 0,
-            isStart: false
+            isStart: false,
+            choices: []
         }
     }
 
@@ -23,16 +24,68 @@ class RenderModal extends Component {
             .catch(err => console.log('err'))
     }
 
+    // Handle starting program
     startProgram = () => {
         this.setState({
             isStart: true
         })
     }
 
+    // Handle choosing and switching answers between questions
+    handleChooseAnswer = (event) => {
+        const value = event.target.value
+        if (this.state.choices.length === this.state.count) {
+            this.setState(prevState => ({
+                choices: [...prevState.choices, value]
+            }))
+        } else {
+            this.setState(prevState => ({
+                choices: prevState.choices.map((choice, index) => {
+                    if (index === this.state.count) {
+                        return value
+                    } else {
+                        return choice
+                    }
+                })
+            }))
+            console.log('else')
+        }
+    }
+
+    // Handle the next button
+    handleNextQuestion = () => {
+        if (this.state.choices.length === this.state.count) {
+            this.setState(prevState => ({
+                choices: [...prevState.choices, null]
+            }))
+        }
+        this.setState(prevState => ({
+            count: prevState.count + 1
+        }))
+    }
+
+    // Handle the previous button
+    handlePrevQuestion = () => {
+        this.setState(prevState => ({
+            count: prevState.count - 1
+        }))
+    }
+
+    // Handle the finish button
+
+
     render() {
         return (
             <div>
-                <IntroModal show={this.props.show} onHide={this.props.onHide} startProgram={this.startProgram} isStart={this.state.isStart} />
+                <IntroModal
+                    show={this.props.show}
+                    onHide={this.props.onHide}
+                    startProgram={this.startProgram}
+                    questionState={this.state}
+                    handleChooseAnswer={this.handleChooseAnswer}
+                    handleNextQuestion={this.handleNextQuestion}
+                    handlePrevQuestion={this.handlePrevQuestion}
+                />
             </div>
         )
     }
