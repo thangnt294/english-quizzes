@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import IntroModal from './IntroModal'
+import MainModal from './MainModal'
 import axios from 'axios'
 
 class RenderModal extends Component {
@@ -9,11 +9,17 @@ class RenderModal extends Component {
         this.state = {
             questionsBank: [],
             count: 0,
+            correct: 0,
             isStart: false,
-            choices: []
+            isFinish: false,
+            shouldUpdate: false,
+            playerAnswers: new Array(10).fill(null),
+            secondTimer: 0,
+            minuteTimer: 0
         }
     }
 
+    // Get questions from database
     componentDidMount() {
         axios.get('http://localhost:5000/questions/10random')
             .then(response =>
@@ -22,6 +28,21 @@ class RenderModal extends Component {
                 })
             )
             .catch(err => console.log('err'))
+        console.log('mounted')
+    }
+
+    // Replay
+    componentDidUpdate() {
+        if (this.state.shouldUpdate) {
+            axios.get('http://localhost:5000/questions/10random')
+                .then(response =>
+                    this.setState({
+                        questionsBank: [...response.data],
+                        shouldUpdate: false
+                    })
+                )
+                .catch(err => console.log('err'))
+        }
     }
 
     // Handle starting program
@@ -29,32 +50,39 @@ class RenderModal extends Component {
         this.setState({
             isStart: true
         })
+        this.myCounter = setInterval(() => {
+            this.setState(prevState => ({
+                secondTimer: prevState.secondTimer + 1
+            }))
+            if (this.state.secondTimer === 60) {
+                this.setState(prevState => ({
+                    minuteTimer: prevState.minuteTimer + 1,
+                    secondTimer: 0
+                }))
+            }
+            if (this.state.minuteTimer === 59 && this.state.secondTimer === 59) {
+                clearInterval(this.myCounter)
+            }
+        }, 1000)
     }
 
     // Handle choosing and switching answers between questions
     handleChooseAnswer = (event) => {
         const value = event.target.value
-        if (this.state.choices.length === this.state.count) {
-            this.setState(prevState => ({
-                choices: [...prevState.choices, value]
-            }))
-        } else {
-            this.setState(prevState => ({
-                choices: prevState.choices.map((choice, index) => {
-                    if (index === this.state.count) {
-                        return value
-                    } else {
-                        return choice
-                    }
-                })
-            }))
-            console.log('else')
-        }
+        this.setState(prevState => ({
+            playerAnswers: prevState.playerAnswers.map((playerAnswer, index) => {
+                if (index === this.state.count) {
+                    return value
+                } else {
+                    return playerAnswer
+                }
+            })
+        }))
     }
 
     // Handle the next button
     handleNextQuestion = () => {
-        if (this.state.choices.length === this.state.count) {
+        if (this.state.playerAnswers.length === this.state.count) {
             this.setState(prevState => ({
                 choices: [...prevState.choices, null]
             }))
@@ -72,12 +100,58 @@ class RenderModal extends Component {
     }
 
     // Handle the finish button
+    handleFinish = () => {
+        clearInterval(this.myCounter)
+        let correctAnswers = this.state.questionsBank.map(question => question.correctAnswer)
+        let playerAnswers = this.state.playerAnswers
+        for (let x = 0; x < 10; x++) {
+            if (correctAnswers[x] === parseInt(playerAnswers[x])) {
+                this.setState(prevState => ({
+                    correct: prevState.correct + 1
+                }))
+            }
+        }
+        this.setState({
+            isFinish: true
+        })
+    }
 
+    // Handle the play again button
+    handlePlayAgain = () => {
+        this.setState({
+            questionsBank: [],
+            count: 0,
+            correct: 0,
+            isStart: false,
+            isFinish: false,
+            shouldUpdate: true,
+            playerAnswers: new Array(10).fill(null),
+            secondTimer: 0,
+            minuteTimer: 0
+        })
+    }
+
+    // Handle the exit button
+    handleExit = () => {
+        this.props.onHide()
+        setTimeout(() => {
+            this.setState({
+                questionsBank: [],
+                count: 0,
+                correct: 0,
+                isStart: false,
+                isFinish: false,
+                shouldUpdate: true,
+                playerAnswers: new Array(10).fill(null), secondTimer: 0,
+                minuteTimer: 0
+            })
+        }, 1000)
+    }
 
     render() {
         return (
             <div>
-                <IntroModal
+                <MainModal
                     show={this.props.show}
                     onHide={this.props.onHide}
                     startProgram={this.startProgram}
@@ -85,6 +159,9 @@ class RenderModal extends Component {
                     handleChooseAnswer={this.handleChooseAnswer}
                     handleNextQuestion={this.handleNextQuestion}
                     handlePrevQuestion={this.handlePrevQuestion}
+                    handleFinish={this.handleFinish}
+                    handlePlayAgain={this.handlePlayAgain}
+                    handleExit={this.handleExit}
                 />
             </div>
         )
