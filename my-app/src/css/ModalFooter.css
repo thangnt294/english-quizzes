@@ -1,0 +1,21 @@
+/* Arrange containers using flexbox */
+
+.button-container-bothside {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.button-container-middle {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.firstTimer-container {
+    width: 26rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}

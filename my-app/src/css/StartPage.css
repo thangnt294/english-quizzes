@@ -91,6 +91,16 @@ button:focus {
     margin-right: 1rem;
 }
 
+.login-text > p:not(:first-child) {
+    cursor: pointer;
+    color: #007bff;
+}
+
+.login-text > p:not(:first-child):hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
 /* Animation */
 @keyframes buttonUp {
     0% {

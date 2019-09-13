@@ -1,0 +1,37 @@
+/* Styling radio button */
+input[type='radio'] {
+    display: none;
+}
+
+input[type='radio']:checked + span img {
+    opacity: 1;
+}
+
+.radio-styling {
+    display: inline-block;
+    width: 1.6rem;
+    height: 1.6rem;
+    margin: -1px 6px 0 0;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 1px solid #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+    background-color: #007bff;
+    font-family: Arial, sans-serif;
+    font-size: 1px;
+}
+
+.radio-styling img {
+    opacity: 0;
+    transform: scale(0.5) translateX(-0.4rem) translateY(0.1rem);
+}
+
+/* Styling results */
+.result-container {
+    text-align: center;
+}
+
+.result-container > p:last-child {
+    text-align: left;
+}

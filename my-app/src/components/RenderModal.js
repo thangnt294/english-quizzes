@@ -1,171 +1,45 @@
-import React, { Component } from 'react'
-import MainModal from './MainModal'
-import axios from 'axios'
+import React from 'react'
+import Modal from 'react-bootstrap/Modal'
+import ModalTitle from './ModalTitle'
+import ModalBody from './ModalBody'
+import ModalFooter from './ModalFooter'
+import '../css/MainModal.css'
 
-class RenderModal extends Component {
-    constructor(props) {
-        super(props)
+function RenderModal(props) {
+    // Destructuring the variables
+    const { startProgram, questionState, handleChooseAnswer, handleNextQuestion, handlePrevQuestion, handleFinish, handlePlayAgain, handleExit, ...rest } = props
+    const { count, isStart, isFinish } = questionState
 
-        this.state = {
-            questionsBank: [],
-            count: 0,
-            correct: 0,
-            isStart: false,
-            isFinish: false,
-            shouldUpdate: false,
-            playerAnswers: new Array(10).fill(null),
-            secondTimer: 0,
-            minuteTimer: 0
-        }
-    }
-
-    // Get questions from database
-    componentDidMount() {
-        axios.get('http://localhost:5000/questions/10random')
-            .then(response =>
-                this.setState({
-                    questionsBank: [...response.data]
-                })
-            )
-            .catch(err => console.log('err'))
-        console.log('mounted')
-    }
-
-    // Replay
-    componentDidUpdate() {
-        if (this.state.shouldUpdate) {
-            axios.get('http://localhost:5000/questions/10random')
-                .then(response =>
-                    this.setState({
-                        questionsBank: [...response.data],
-                        shouldUpdate: false
-                    })
-                )
-                .catch(err => console.log('err'))
-        }
-    }
-
-    // Handle starting program
-    startProgram = () => {
-        this.setState({
-            isStart: true
-        })
-        this.myCounter = setInterval(() => {
-            this.setState(prevState => ({
-                secondTimer: prevState.secondTimer + 1
-            }))
-            if (this.state.secondTimer === 60) {
-                this.setState(prevState => ({
-                    minuteTimer: prevState.minuteTimer + 1,
-                    secondTimer: 0
-                }))
-            }
-            if (this.state.minuteTimer === 59 && this.state.secondTimer === 59) {
-                clearInterval(this.myCounter)
-            }
-        }, 1000)
-    }
-
-    // Handle choosing and switching answers between questions
-    handleChooseAnswer = (event) => {
-        const value = event.target.value
-        this.setState(prevState => ({
-            playerAnswers: prevState.playerAnswers.map((playerAnswer, index) => {
-                if (index === this.state.count) {
-                    return value
-                } else {
-                    return playerAnswer
-                }
-            })
-        }))
-    }
-
-    // Handle the next button
-    handleNextQuestion = () => {
-        if (this.state.playerAnswers.length === this.state.count) {
-            this.setState(prevState => ({
-                choices: [...prevState.choices, null]
-            }))
-        }
-        this.setState(prevState => ({
-            count: prevState.count + 1
-        }))
-    }
-
-    // Handle the previous button
-    handlePrevQuestion = () => {
-        this.setState(prevState => ({
-            count: prevState.count - 1
-        }))
-    }
-
-    // Handle the finish button
-    handleFinish = () => {
-        clearInterval(this.myCounter)
-        let correctAnswers = this.state.questionsBank.map(question => question.correctAnswer)
-        let playerAnswers = this.state.playerAnswers
-        for (let x = 0; x < 10; x++) {
-            if (correctAnswers[x] === parseInt(playerAnswers[x])) {
-                this.setState(prevState => ({
-                    correct: prevState.correct + 1
-                }))
-            }
-        }
-        this.setState({
-            isFinish: true
-        })
-    }
-
-    // Handle the play again button
-    handlePlayAgain = () => {
-        this.setState({
-            questionsBank: [],
-            count: 0,
-            correct: 0,
-            isStart: false,
-            isFinish: false,
-            shouldUpdate: true,
-            playerAnswers: new Array(10).fill(null),
-            secondTimer: 0,
-            minuteTimer: 0
-        })
-    }
-
-    // Handle the exit button
-    handleExit = () => {
-        this.props.onHide()
-        setTimeout(() => {
-            this.setState({
-                questionsBank: [],
-                count: 0,
-                correct: 0,
-                isStart: false,
-                isFinish: false,
-                shouldUpdate: true,
-                playerAnswers: new Array(10).fill(null), secondTimer: 0,
-                minuteTimer: 0
-            })
-        }, 1000)
-    }
-
-    render() {
-        return (
-            <div>
-                <MainModal
-                    show={this.props.show}
-                    onHide={this.props.onHide}
-                    startProgram={this.startProgram}
-                    questionState={this.state}
-                    handleChooseAnswer={this.handleChooseAnswer}
-                    handleNextQuestion={this.handleNextQuestion}
-                    handlePrevQuestion={this.handlePrevQuestion}
-                    handleFinish={this.handleFinish}
-                    handlePlayAgain={this.handlePlayAgain}
-                    handleExit={this.handleExit}
+    return (
+        <Modal
+            {...rest}
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            className="modal"
+        >
+            <Modal.Header className="modal-header bg-primary">
+                <Modal.Title id="contained-modal-title-vcenter" className="modal-title">
+                    <ModalTitle count={count} isStart={isStart} isFinish={isFinish} />
+                </Modal.Title>
+                <button type="button" className="close-button" onClick={props.onHide}>&times;</button>
+            </Modal.Header>
+            <Modal.Body className="modal-body">
+                <ModalBody handleChooseAnswer={handleChooseAnswer} questionState={questionState} />
+            </Modal.Body>
+            <Modal.Footer className="modal-footer">
+                <ModalFooter
+                    startProgram={startProgram}
+                    questionState={questionState}
+                    handleChooseAnswer={handleChooseAnswer}
+                    handleNextQuestion={handleNextQuestion}
+                    handlePrevQuestion={handlePrevQuestion}
+                    handleFinish={handleFinish}
+                    handlePlayAgain={handlePlayAgain}
+                    handleExit={handleExit}
                 />
-            </div>
-        )
-    }
+            </Modal.Footer>
+        </Modal>
+    )
 }
 
 export default RenderModal

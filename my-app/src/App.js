@@ -1,22 +1,33 @@
 import React from 'react'
 import StartPage from './components/StartPage'
-import RenderModal from './components/RenderModal'
+import MainModal from './components/MainModal'
+import AboutModal from './components/AboutModal'
 
 function App() {
-	const [modalShow, setModalShow] = React.useState(false)
+	const [mainModalShow, setMainModalShow] = React.useState(false)
+	const [aboutModalShow, setAboutModalShow] = React.useState(false)
 
-	function showModal() {
-		setModalShow(true)
+	function showMainModal() {
+		setMainModalShow(true)
 	}
 
-	function hideModal() {
-		setModalShow(false)
+	function hideMainModal() {
+		setMainModalShow(false)
+	}
+
+	function showAboutModal() {
+		setAboutModalShow(true)
+	}
+
+	function hideAboutModal() {
+		setAboutModalShow(false)
 	}
 
 	return (
 		<div>
-			<StartPage showModal={showModal} />
-			<RenderModal show={modalShow} onHide={hideModal} />
+			<StartPage showMainModal={showMainModal} showAboutModal={showAboutModal} />
+			<MainModal show={mainModalShow} onHide={hideMainModal} />
+			<AboutModal show={aboutModalShow} onHide={hideAboutModal} />
 		</div>
 	)
 }
