@@ -20,3 +20,7 @@
 .icon-github:hover {
     color: #5d7b93;
 }
+
+.modal-body p:nth-child(5) {
+    font-style: italic;
+}

@@ -12,7 +12,7 @@ class StartPage extends React.Component {
                     <button className="main-button" onClick={this.props.showMainModal}>Start</button>
                     <div className="login-text">
                         <p>Are you an admin?</p>
-                        <p>Login</p>
+                        <p onClick={this.props.showLoginModal}>Login</p>
                         <p onClick={this.props.showAboutModal}>About</p>
                     </div>
                 </div>
