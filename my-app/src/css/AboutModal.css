@@ -1,0 +1,22 @@
+/* Styling Icons */
+.icon-about {
+    font-size: 4rem;
+    cursor: pointer;
+}
+
+.icon-facebook {
+    color: #007bff;
+    margin-right: 1rem;
+}
+
+.icon-facebook:hover {
+    color: #1e90ff;
+}
+
+.icon-github {
+    color: #24292e;
+}
+
+.icon-github:hover {
+    color: #5d7b93;
+}

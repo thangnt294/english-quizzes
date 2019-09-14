@@ -2,8 +2,12 @@ import React from 'react'
 import StartPage from './components/StartPage'
 import MainModal from './components/MainModal'
 import AboutModal from './components/AboutModal'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
 
 function App() {
+	// Creating a font awesome library
+	library.add(fab)
 	const [mainModalShow, setMainModalShow] = React.useState(false)
 	const [aboutModalShow, setAboutModalShow] = React.useState(false)
 
