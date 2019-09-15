@@ -1,49 +1,22 @@
 import React from 'react'
-import StartPage from './components/StartPage'
-import MainModal from './components/MainModal'
-import AboutModal from './components/AboutModal'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import MainPage from './main-page/MainPage'
+import AdminPage from './admin-page/AdminPage'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { fas } from '@fortawesome/free-solid-svg-icons'
-import LoginModal from './components/LoginModal'
+import { far } from '@fortawesome/free-regular-svg-icons'
 
 function App() {
 	// Creating a font awesome library
-	library.add(fab, fas)
-	const [mainModalShow, setMainModalShow] = React.useState(false)
-	const [aboutModalShow, setAboutModalShow] = React.useState(false)
-	const [loginModalShow, setLoginModalShow] = React.useState(false)
-
-	function showMainModal() {
-		setMainModalShow(true)
-	}
-
-	function hideMainModal() {
-		setMainModalShow(false)
-	}
-
-	function showAboutModal() {
-		setAboutModalShow(true)
-	}
-
-	function hideAboutModal() {
-		setAboutModalShow(false)
-	}
-
-	function showLoginModal() {
-		setLoginModalShow(true)
-	}
-
-	function hideLoginModal() {
-		setLoginModalShow(false)
-	}
+	library.add(fab, fas, far)
 
 	return (
 		<div>
-			<StartPage showMainModal={showMainModal} showAboutModal={showAboutModal} showLoginModal={showLoginModal} />
-			<MainModal show={mainModalShow} onHide={hideMainModal} />
-			<AboutModal show={aboutModalShow} onHide={hideAboutModal} />
-			<LoginModal show={loginModalShow} onHide={hideLoginModal} />
+			<Router>
+				<Route path="/" exact component={MainPage} />
+				<Route path="/admin" component={AdminPage} />
+			</Router>
 		</div>
 	)
 }

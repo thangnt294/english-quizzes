@@ -1,0 +1,24 @@
+.admin-body {
+    padding: 2rem;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.6rem 2.5rem;
+    background-image: -webkit-linear-gradient(to right, #00c6ff, #0072ff);
+    background-image: linear-gradient(to right, #00c6ff, #0072ff);
+    color: #fff;
+}
+
+.admin-header button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    outline: none;
+    font-size: 1.5rem;
+}
+
+.admin-header button:hover {
+    color: #eee;
+}

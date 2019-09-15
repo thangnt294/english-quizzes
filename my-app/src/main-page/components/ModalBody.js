@@ -1,4 +1,5 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../css/ModalBody.css'
 
 function ModalBody(props) {
@@ -9,49 +10,109 @@ function ModalBody(props) {
         // eslint-disable-next-line
         switch (number) {
             case 0:
-                return 'Wow... 0/10? You\'ve got to be kidding me. Maybe you should try again?'
+                return (
+                    <div>
+                        <FontAwesomeIcon icon={['far', 'dizzy']} className="icon-result" />
+                        <p>{'Wow... 0/10? You\'ve got to be kidding me. Maybe you should try again?'}</p>
+                    </div>
+                )
                 // eslint-disable-next-line
                 break
             case 1:
-                return 'Hey, cheer up. You got one. At least it\'s not zero, am I right?'
+                return (
+                    <div>
+                        <FontAwesomeIcon icon={['far', 'sad-cry']} className="icon-result" />
+                        <p>{'Hey, cheer up. You got one. At least it\'s not zero, am I right?'}</p>
+                    </div>
+                )
                 // eslint-disable-next-line
                 break
             case 2:
-                return '2 points. Well, still better than 0 or 1. High five!'
+                return (
+                    <div>
+                        <FontAwesomeIcon icon={['far', 'frown-open']} className="icon-result" />
+                        <p>{'2 points. Well, still better than 0 or 1. Try harder next time!'}</p>
+                    </div>
+                )
                 // eslint-disable-next-line
                 break
             case 3:
-                return '1 2 3... hey you got three of them! That\'s like... almost a third!'
+                return (
+                    <div>
+                        <FontAwesomeIcon icon={['far', 'grin-beam-sweat']} className="icon-result" />
+                        <p>{'1 2 3... hey you got three of them! That\'s like... almost a third!'}</p>
+                    </div>
+                )
                 // eslint-disable-next-line
                 break
             case 4:
-                return 'There\'s just something about the number 4 that got me really hypnotized. Dunno why.'
+                return (
+                    <div>
+                        <FontAwesomeIcon icon={['far', 'grin-tongue-squint']} className="icon-result" />
+                        <p>{'There\'s just something about the number 4 that got me really hypnotized. Dunno why.'}</p>
+                    </div>
+                )
                 // eslint-disable-next-line
                 break
             case 5:
-                return '5. The middle number. It means that you\'ve got half of the questions right. Good job, maybe?'
+                return (
+                    <div>
+                        <FontAwesomeIcon icon={['far', 'grimace']} className="icon-result" />
+                        <p>{'5. The middle ground. It means that you\'ve got half of the questions right. Good job, maybe?'}</p>
+                    </div>
+                )
                 // eslint-disable-next-line
                 break
             case 6:
-                return 'Do you know that the number 6 is usually associated with the devil? I think that\'s just silly, because to me you\'re more like an angel ;) '
+                return (
+                    <div>
+                        <FontAwesomeIcon icon={['far', 'smile-wink']} className="icon-result" />
+                        <p>{'Did you know that the number 6 is usually associated with the devil? Well I think that\'s just silly, because to me you\'re more like an angel ;)'}</p>
+                    </div>
+                )
                 // eslint-disable-next-line
                 break
             case 7:
-                return 'Ohhh... am I looking at a lucky 7? It must be my lucky day! Or yours... maybe ;)'
+                return (
+                    <div>
+                        <FontAwesomeIcon icon={['far', 'grin-tongue-wink']} className="icon-result" />
+                        <p>{'Ohhh... am I looking at a lucky 7? It must be my lucky day! Or yours... maybe ;)'}</p>
+                    </div>
+                )
                 // eslint-disable-next-line
                 break
             case 8:
-                return 'That\'s a decent score, eh? You should be proud of yourself. Well done!'
+                return (
+                    <div>
+                        <FontAwesomeIcon icon={['far', 'grin-beam']} className="icon-result" />
+                        <p>{'That\'s a decent score, eh? You should be proud of yourself. Well done!'}</p>
+                    </div>
+                )
                 // eslint-disable-next-line
                 break
             case 9:
-                return 'Impressive. You should consider being a teacher. Now how about trying again to get a perfect 10? ;)'
+                return (
+                    <div>
+                        <FontAwesomeIcon icon={['far', 'surprise']} className="icon-result" />
+                        <p>{'Impressive. You should consider being a teacher. Now how about trying again to get a perfect 10? ;)'}</p>
+                    </div>
+                )
+                // eslint-disable-next-line
+                break
+            case 10:
+                return (
+                    <div>
+                        <FontAwesomeIcon icon={['far', 'grin-stars']} className="icon-result" />
+                        <p>{'Spendid, marvelous, or should I say "supercalifragilisticexpialidocious"! (please don\'t ever use that word in real life)'}</p>
+                    </div>
+                )
                 // eslint-disable-next-line
                 break
             default:
-                return 'Spendid, marvelous, or should I say "supercalifragilisticexpialidocious"! (please don\'t ever use that word in real life)'
+                return <p>Uh oh... Something's wrong with the score system. Couldn't get your result... sorry.</p>
         }
     }
+
     return (
         <div>
             {isStart ?
@@ -60,9 +121,7 @@ function ModalBody(props) {
                         <h1>Your result</h1>
                         <p>Correct answers: {correct}/10</p>
                         <p>Total time wasted: {minuteTimer <= 9 ? '0' : null}{minuteTimer}:{secondTimer <= 9 ? '0' : null}{secondTimer}</p>
-                        <br />
-                        <br />
-                        <p>{renderSwitch(correct)}</p>
+                        {renderSwitch(correct)}
                     </div>
                     :
                     <div>
