@@ -1,0 +1,35 @@
+.correct-answer {
+    color: #5cb85c;
+}
+
+.normal-answer {
+    font-style: italic;
+}
+
+.icon-check {
+    margin-left: 2rem;
+}
+
+.icon-caret {
+    font-size: 1.7rem;
+}
+
+.icon-edit {
+    margin-right: 1rem;
+    color: #ffcc5c;
+    cursor: pointer;
+}
+
+.icon-edit:hover {
+    color: #ffa700;
+}
+
+.icon-trash {
+    margin-left: 1rem;
+    color: #fe4a49;
+    cursor: pointer;
+}
+
+.icon-trash:hover {
+    color: #d11141;
+}

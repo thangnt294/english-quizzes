@@ -1,24 +1,63 @@
-.admin-body {
-    padding: 2rem;
-}
-
-.admin-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 1.6rem 2.5rem;
-    background-image: -webkit-linear-gradient(to right, #00c6ff, #0072ff);
-    background-image: linear-gradient(to right, #00c6ff, #0072ff);
-    color: #fff;
-}
-
-.admin-header button {
-    background: transparent;
-    border: none;
-    color: #fff;
-    outline: none;
+.table-container {
+    padding: 3rem;
+    overflow: hidden;
     font-size: 1.5rem;
 }
 
-.admin-header button:hover {
-    color: #eee;
+/* Styling the table title */
+.logout-button {
+    background-color: #fe4a49;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    outline: none;
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+}
+
+.logout-button:hover {
+    background-color: #d11141;
+}
+
+.table-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.6rem 2.5rem;
+    background-color: #435d7d;
+    color: #fff;
+    align-items: flex-end;
+}
+
+/* Styling the table option */
+.table-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1.6rem 2.5rem;
+    border: none;
+}
+
+.add-button {
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    font-size: 1.5rem;
+    padding: 1rem 3.3rem;
+    background-color: #5cb85c;
+    color: #fff;
+}
+
+.add-button:hover {
+    background-color: #449d44;
+}
+
+.select-box {
+    margin: 0 1rem;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    outline: none;
+}
+
+.table-content {
+    border: 1px solid #718096;
 }

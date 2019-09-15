@@ -1,0 +1,37 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    word-spacing: 2px;
+    padding: 0 1.6rem;
+}
+
+.pagination {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 3rem;
+}
+
+.pagination-icon {
+    margin: 0 1rem;
+}
+
+.pagination-button {
+    padding: 0.8rem 1.5rem;
+    border-radius: 50%;
+    border: none;
+    background-color: transparent;
+}
+
+.pagination-button:focus {
+    background-color: #0072ff;
+    color: #fff;
+}
+
+.strong-text {
+    font-weight: bold;
+}
+
+.spacing-text {
+    letter-spacing: 1.5px;
+}
