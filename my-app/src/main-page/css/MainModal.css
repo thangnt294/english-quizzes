@@ -3,9 +3,9 @@
     height: 100vh;
 }
 
-.modal-content {
+.main-modal > .modal-content {
     border: none;
-    height: 40rem;
+    height: 40rem !important;
 }
 
 .modal-header {

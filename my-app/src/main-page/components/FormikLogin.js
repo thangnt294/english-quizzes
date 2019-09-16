@@ -8,11 +8,11 @@ const LoginForm = () => {
         <Form className="login-form">
             <h1>Welcome back, Thang!</h1>
             <div className="input-container">
-                <FontAwesomeIcon icon={['fas', 'user']} className="login-icon" />
+                <FontAwesomeIcon icon={['fas', 'user']} className="form-icon" />
                 <Field type="text" name="username" placeholder="Username" className="text-field" /><br />
             </div>
             <div className="input-container">
-                <FontAwesomeIcon icon={['fas', 'lock']} className="login-icon" />
+                <FontAwesomeIcon icon={['fas', 'lock']} className="form-icon" />
                 <Field type="password" name="password" placeholder="Password" className="text-field" />
             </div>
             <button className="login-button">Sign In</button>

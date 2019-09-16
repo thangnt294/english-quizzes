@@ -10,6 +10,7 @@ function AboutModal(props) {
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
+            dialogClassName="main-modal"
         >
             <Modal.Header className="modal-header bg-primary">
                 <Modal.Title id="contained-modal-title-vcenter" className="modal-title">

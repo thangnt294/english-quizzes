@@ -4,7 +4,8 @@ import '../css/QuestionsData.css'
 
 const QuestionsData = ({
     question,
-    showDeleteModal
+    showDeleteModal,
+    showEditModal
 }) => {
     const [showAnswers, setShowAnswers] = useState(false)
     const hide = {
@@ -15,7 +16,7 @@ const QuestionsData = ({
             <tr>
                 <td onClick={() => setShowAnswers(!showAnswers)}>{showAnswers ? <FontAwesomeIcon className="icon-caret" icon={['fas', 'caret-down']} /> : <FontAwesomeIcon className="icon-caret" icon={['fas', 'caret-right']} />}</td>
                 <td>{question.title}</td>
-                <td><FontAwesomeIcon className="icon-edit" icon={['fas', 'edit']} />|<FontAwesomeIcon onClick={showDeleteModal} className="icon-trash" icon={['fas', 'trash']} /></td>
+                <td><FontAwesomeIcon onClick={showEditModal} className="icon-edit" icon={['fas', 'edit']} />|<FontAwesomeIcon onClick={showDeleteModal} className="icon-trash" icon={['fas', 'trash']} /></td>
             </tr>
             <tr style={showAnswers ? null : hide}>
                 <td className={question.correctAnswer === 0 ? "correct-answer" : null}>A.</td>

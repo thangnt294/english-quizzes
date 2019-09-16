@@ -9,6 +9,7 @@ function LoginModal(props) {
             size="md"
             aria-labelledby="contained-modal-title-vcenter"
             centered
+            dialogClassName="main-modal"
         >
             <Modal.Header className="bg-primary">
                 <Modal.Title id="contained-modal-title-vcenter" className="modal-title">

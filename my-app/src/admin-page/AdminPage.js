@@ -4,6 +4,8 @@ import Pagination from './components/Pagination'
 import Table from 'react-bootstrap/Table'
 import axios from 'axios'
 import './css/AdminPage.css'
+import AddModal from './components/AddModal'
+import EditModal from './components/EditModal'
 import DeleteModal from './components/DeleteModal'
 
 const AdminTable = () => {
@@ -11,6 +13,8 @@ const AdminTable = () => {
     const [allQuestions, setAllQuestions] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [questionsPerPage, setQuestionsPerPage] = useState(5)
+    const [addModalShow, setAddModalShow] = useState(false)
+    const [editModalShow, setEditModalShow] = useState(false)
     const [deleteModalShow, setDeleteModalShow] = useState(false)
 
     // Fetching the questions
@@ -53,6 +57,24 @@ const AdminTable = () => {
         setCurrentPage(1)
     }
 
+    // Handling the add modal
+    const showAddModal = () => {
+        setAddModalShow(true)
+    }
+
+    const hideAddModal = () => {
+        setAddModalShow(false)
+    }
+
+    // Handling the edit modal
+    const showEditModal = () => {
+        setEditModalShow(true)
+    }
+
+    const hideEditModal = () => {
+        setEditModalShow(false)
+    }
+
     // Handling the delete modal
     const showDeleteModal = () => {
         setDeleteModalShow(true)
@@ -78,7 +100,7 @@ const AdminTable = () => {
                             <option value="50">50</option>
                         </select>questions per page
                 </label>
-                    <button className="add-button">Add</button>
+                    <button className="add-button" onClick={showAddModal}>Add</button>
                 </div>
                 <Table responsive>
                     <thead>
@@ -90,7 +112,7 @@ const AdminTable = () => {
                     </thead>
                     <tbody>
                         {currentQuestions.map(question =>
-                            <QuestionsData question={question} key={question._id} showDeleteModal={showDeleteModal} />
+                            <QuestionsData question={question} key={question._id} showDeleteModal={showDeleteModal} showEditModal={showEditModal} />
                         )}
                     </tbody>
                 </Table>
@@ -105,6 +127,8 @@ const AdminTable = () => {
                     prevPage={prevPage}
                 />
             </div>
+            <AddModal show={addModalShow} onHide={hideAddModal} />
+            <EditModal show={editModalShow} onHide={hideEditModal} />
             <DeleteModal show={deleteModalShow} onHide={hideDeleteModal} />
         </div>
     )

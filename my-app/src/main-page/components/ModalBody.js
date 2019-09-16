@@ -127,28 +127,28 @@ function ModalBody(props) {
                     <div>
                         <p>{(count + 1) + '. ' + questionsBank[count].title}</p>
                         <label>
-                            <input type="radio" name="playerAnswers" value="0" checked={playerAnswers[count] === "0"} onChange={handleChooseAnswer} />
+                            <input className="answers-option" type="radio" name="playerAnswers" value="0" checked={playerAnswers[count] === "0"} onChange={handleChooseAnswer} />
                             <span className="radio-styling">
                                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
                             </span>
                             {questionsBank[count].answers[0]}
                         </label><br />
                         <label>
-                            <input type="radio" name="playerAnswers" value="1" checked={playerAnswers[count] === "1"} onChange={handleChooseAnswer} />
+                            <input className="answers-option" type="radio" name="playerAnswers" value="1" checked={playerAnswers[count] === "1"} onChange={handleChooseAnswer} />
                             <span className="radio-styling">
                                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
                             </span>
                             {questionsBank[count].answers[1]}
                         </label><br />
                         <label>
-                            <input type="radio" name="playerAnswers" value="2" checked={playerAnswers[count] === "2"} onChange={handleChooseAnswer} />
+                            <input className="answers-option" type="radio" name="playerAnswers" value="2" checked={playerAnswers[count] === "2"} onChange={handleChooseAnswer} />
                             <span className="radio-styling">
                                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
                             </span>
                             {questionsBank[count].answers[2]}
                         </label><br />
                         <label>
-                            <input type="radio" name="playerAnswers" value="3" checked={playerAnswers[count] === "3"} onChange={handleChooseAnswer} />
+                            <input className="answers-option" type="radio" name="playerAnswers" value="3" checked={playerAnswers[count] === "3"} onChange={handleChooseAnswer} />
                             <span className="radio-styling">
                                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
                             </span>

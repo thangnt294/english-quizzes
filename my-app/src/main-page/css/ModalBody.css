@@ -1,9 +1,9 @@
 /* Styling radio button */
-input[type='radio'] {
+.answers-option {
     display: none;
 }
 
-input[type='radio']:checked + span img {
+.answers-option:checked + span img {
     opacity: 1;
 }
 

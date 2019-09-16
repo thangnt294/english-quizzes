@@ -10,20 +10,20 @@ const DeleteModal = (props) => {
             size="md"
             aria-labelledby="contained-modal-title-vcenter"
             centered
-            className="delete-modal"
+            dialogClassName="delete-modal"
         >
-            <Modal.Header closeButton>
+            <Modal.Header className="bg-danger">
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Delete Question
+                    <h1>Delete Question</h1>
                 </Modal.Title>
                 <button type="button" className="close-button" onClick={props.onHide}>&times;</button>
             </Modal.Header>
             <Modal.Body>
                 <p>Are you sure you want to delete this question?</p>
             </Modal.Body>
-            <Modal.Footer>
-                <Button>Confirm</Button>
-                <Button onClick={props.onHide}>Cancel</Button>
+            <Modal.Footer className="delete-footer">
+                <Button variant="danger" className="custom-button">Confirm</Button>
+                <Button variant="secondary" className="custom-button" onClick={props.onHide}>Cancel</Button>
             </Modal.Footer>
         </Modal>
     )

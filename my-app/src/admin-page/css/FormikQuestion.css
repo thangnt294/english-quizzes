@@ -1,0 +1,49 @@
+.question-form {
+    margin-left: 2.5rem;
+    padding: 0;
+    width: 90%;
+}
+
+.correct-radio {
+    appearance: none;
+    width: 1.4rem;
+    height: 1.4rem;
+    background: #eeeeee;
+    box-shadow: inset 0 0 0 0.4rem white, 0 0 0 0.3rem;
+    border-radius: 50%;
+    transition: all 0.2s;
+    cursor: pointer;
+    color: #363945;
+    margin: 0 1.5rem;
+}
+
+.correct-radio:hover,
+.correct-radio:checked {
+    background: #363945;
+    box-shadow: inset 0 0 0 0.5rem white, 0 0 0 0.3rem;
+}
+.correct-radio:checked {
+    background: #28a745;
+    box-shadow: inset 0 0 0 0.4rem white, 0 0 0 0.3rem #28a745;
+}
+.correct-radio:focus {
+    outline: 0;
+}
+
+.answer-field {
+    width: 60%;
+}
+
+.container-answer1,
+.container-answer3 {
+    margin-right: 4rem;
+    margin-left: 1rem;
+}
+.container-answer2,
+.container-answer4 {
+    margin-right: 1rem;
+}
+.container-question {
+    margin-left: 1.2rem;
+    margin-bottom: 2rem;
+}
