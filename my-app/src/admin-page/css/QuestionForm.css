@@ -29,9 +29,12 @@
 .correct-radio:focus {
     outline: 0;
 }
+.question-field {
+    width: 95%;
+}
 
 .answer-field {
-    width: 60%;
+    width: 75%;
 }
 
 .container-answer1,

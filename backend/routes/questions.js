@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const { questionValidation } = require('../validation')
 let Question = require('../models/questionsModel')
 
 // Get all questions
@@ -36,6 +37,10 @@ router.get('/10random', (req, res) => {
 
 // Adding a new question
 router.post('/add', (req, res) => {
+    //Validate before adding
+    const { error } = questionValidation(req.body)
+    if (error) return res.status(400).send(error.details[0].message)
+
     const title = req.body.title
     const answers = req.body.answers
     const correctAnswer = req.body.correctAnswer

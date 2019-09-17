@@ -8,7 +8,7 @@ const QuestionForm = ({ title, answers, correctAnswer, handleChange }) => {
             <div className="row">
                 <div className="input-container col-11 container-question">
                     <FontAwesomeIcon icon={['fas', 'question']} className="form-icon" />
-                    <input type="text" name="question" placeholder="Question" onChange={handleChange} value={title} className="text-field" />
+                    <input type="text" name="question" placeholder="Question" onChange={handleChange} value={title} className="text-field question-field" />
                 </div>
             </div>
             <div className="row">

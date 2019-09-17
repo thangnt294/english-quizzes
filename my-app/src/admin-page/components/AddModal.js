@@ -98,6 +98,20 @@ class AddModal extends Component {
         this.props.onHide()
     }
 
+    // Check if value is present
+    checkValue = () => {
+        if (this.state.title === '' ||
+            this.state.answers[0] === '' ||
+            this.state.answers[1] === '' ||
+            this.state.answers[2] === '' ||
+            this.state.answers[3] === '' ||
+            this.state.correctAnswer === null) {
+            return true
+        } else {
+            return false
+        }
+    }
+
     render() {
         return (
             <div>
@@ -121,10 +135,10 @@ class AddModal extends Component {
                             correctAnswer={this.state.correctAnswer}
                             handleChange={this.handleChange}
                         />
-                        <p style={{ fontStyle: 'italic', marginTop: '3rem' }}>Please select the correct answer before submitting</p>
+                        <p style={{ fontStyle: 'italic', marginTop: '3rem' }}>Please fill out all the field and select the correct answer before submitting</p>
                     </Modal.Body>
                     <Modal.Footer className="add-footer">
-                        <Button variant="success" className="custom-button" onClick={this.handleAddQuestion}>Add</Button>
+                        <Button variant="success" className="custom-button" disabled={this.checkValue()} onClick={this.handleAddQuestion}>Add</Button>
                         <Button variant="secondary" className="custom-button" onClick={this.props.onHide}>Cancel</Button>
                     </Modal.Footer>
                 </Modal>

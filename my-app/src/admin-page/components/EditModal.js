@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 import '../css/EditModal.css'
 import QuestionForm from './QuestionForm'
 
-const EditModal = ({ editQuestion, onHide, handleChange, handleUpdateQuestion, ...rest }) => {
+const EditModal = ({ editQuestion, onHide, handleChange, handleUpdateQuestion, checkUpdate, ...rest }) => {
     return (
         <div>
             <Modal
@@ -25,7 +25,7 @@ const EditModal = ({ editQuestion, onHide, handleChange, handleUpdateQuestion, .
                     <p style={{ fontStyle: 'italic', marginTop: '3rem' }}>Please make changes before submitting</p>
                 </Modal.Body>
                 <Modal.Footer className="edit-footer">
-                    <Button variant="warning" className="custom-button update-button" onClick={handleUpdateQuestion}>Update</Button>
+                    <Button variant="warning" className="custom-button update-button" disabled={!checkUpdate} onClick={handleUpdateQuestion}>Update</Button>
                     <Button variant="secondary" className="custom-button" onClick={onHide}>Cancel</Button>
                 </Modal.Footer>
             </Modal>

@@ -18,6 +18,7 @@ const AdminTable = () => {
     const [editModalShow, setEditModalShow] = useState(false)
     const [deleteModalShow, setDeleteModalShow] = useState(false)
     const [deleteQuestionID, setDeleteQuestionID] = useState(0)
+    const [checkUpdate, setCheckUpdate] = useState(false)
     const [editQuestion, setEditQuestion] = useState({
         title: '',
         answers: ['', '', '', ''],
@@ -85,6 +86,9 @@ const AdminTable = () => {
 
     const hideEditModal = () => {
         setEditModalShow(false)
+        if (checkUpdate) {
+            setCheckUpdate(false)
+        }
     }
 
     const handleUpdateQuestion = () => {
@@ -163,6 +167,7 @@ const AdminTable = () => {
             default:
                 break
         }
+        setCheckUpdate(true)
     }
 
 
@@ -221,7 +226,7 @@ const AdminTable = () => {
                 />
             </div>
             <AddModal show={addModalShow} onHide={hideAddModal} />
-            <EditModal show={editModalShow} onHide={hideEditModal} editQuestion={editQuestion} handleChange={handleChange} handleUpdateQuestion={handleUpdateQuestion} />
+            <EditModal show={editModalShow} onHide={hideEditModal} checkUpdate={checkUpdate} editQuestion={editQuestion} handleChange={handleChange} handleUpdateQuestion={handleUpdateQuestion} />
             <DeleteModal show={deleteModalShow} onHide={hideDeleteModal} deleteQuestionID={deleteQuestionID} currentQuestionsNumber={currentQuestions.length} prevPage={prevPage} />
         </div>
     )

@@ -9,11 +9,11 @@
 .btn-warning:focus,
 .btn-warning:hover,
 .btn-warning:visited,
-.btn-warning:active {
+.btn-warning:disabled {
     outline: none;
     color: #fff;
 }
 
 .update-button:active {
-    color: #fff;
+    color: #fff !important;
 }
