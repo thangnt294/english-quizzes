@@ -66,14 +66,14 @@ router.put('/update/:id', (req, res) => {
             correctAnswer
         }
     })
-        .then(question => console.log('Question updated'))
+        .then(() => res.json('Question updated'))
         .catch(err => res.status(400).json('Error: ' + err))
 })
 
 // Delete question
 router.delete('/delete/:id', (req, res) => {
     Question.findByIdAndDelete(req.params.id)
-        .then(question => console.log('Question deleted'))
+        .then(() => res.json('Question deleted'))
         .catch(err => res.status(400).json('Error: ' + err))
 })
 

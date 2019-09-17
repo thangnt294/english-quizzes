@@ -4,12 +4,16 @@ import Button from 'react-bootstrap/Button'
 import '../css/DeleteModal.css'
 import Axios from 'axios'
 
-const DeleteModal = ({ deleteQuestionID, onHide, ...rest }) => {
+const DeleteModal = ({ deleteQuestionID, onHide, currentQuestionsNumber, prevPage, ...rest }) => {
 
     const handleDeleteQuestion = () => {
         Axios.delete('http://localhost:5000/questions/delete/' + deleteQuestionID)
-            .then(res => console.log(res))
+            .then(res => console.log(res.data))
             .catch(err => console.log(err))
+        if (currentQuestionsNumber < 2) {
+            prevPage()
+        }
+        onHide()
     }
 
     return (

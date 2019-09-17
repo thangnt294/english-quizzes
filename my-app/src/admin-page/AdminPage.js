@@ -7,6 +7,7 @@ import './css/AdminPage.css'
 import AddModal from './components/AddModal'
 import EditModal from './components/EditModal'
 import DeleteModal from './components/DeleteModal'
+import Axios from 'axios'
 
 const AdminTable = () => {
     // Setting the states
@@ -20,7 +21,8 @@ const AdminTable = () => {
     const [editQuestion, setEditQuestion] = useState({
         title: '',
         answers: ['', '', '', ''],
-        correctAnswer: null
+        correctAnswer: null,
+        _id: 0
     })
 
     // Fetching the questions
@@ -75,23 +77,94 @@ const AdminTable = () => {
     // Handling the edit modal
     const showEditModal = (id) => {
         setEditModalShow(true)
-        const foo = allQuestions.find(question => {
+        const findQuestion = allQuestions.find(question => {
             return id === question._id
         })
-        setEditQuestion(foo)
+        setEditQuestion(findQuestion)
     }
 
     const hideEditModal = () => {
         setEditModalShow(false)
     }
 
-    // Updating correct answers
-    const handleChange = (event) => {
-        setEditQuestion({
-            ...editQuestion,
-            correctAnswer: parseInt(event.target.value)
-        })
+    const handleUpdateQuestion = () => {
+        Axios.put('http://localhost:5000/questions/update/' + editQuestion._id, editQuestion)
+            .then(res => {
+                hideEditModal()
+                return res
+            })
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err))
     }
+
+    // Updating answers
+    const handleChange = (event) => {
+        switch (event.target.name) {
+            case 'question':
+                setEditQuestion({
+                    ...editQuestion,
+                    title: event.target.value
+                })
+                break
+            case 'answer0':
+                setEditQuestion({
+                    ...editQuestion,
+                    answers: editQuestion.answers.map((answer, index) => {
+                        if (index === 0) {
+                            return event.target.value
+                        } else {
+                            return answer
+                        }
+                    })
+                })
+                break
+            case 'answer1':
+                setEditQuestion({
+                    ...editQuestion,
+                    answers: editQuestion.answers.map((answer, index) => {
+                        if (index === 1) {
+                            return event.target.value
+                        } else {
+                            return answer
+                        }
+                    })
+                })
+                break
+            case 'answer2':
+                setEditQuestion({
+                    ...editQuestion,
+                    answers: editQuestion.answers.map((answer, index) => {
+                        if (index === 2) {
+                            return event.target.value
+                        } else {
+                            return answer
+                        }
+                    })
+                })
+                break
+            case 'answer3':
+                setEditQuestion({
+                    ...editQuestion,
+                    answers: editQuestion.answers.map((answer, index) => {
+                        if (index === 3) {
+                            return event.target.value
+                        } else {
+                            return answer
+                        }
+                    })
+                })
+                break
+            case 'correctAnswer':
+                setEditQuestion({
+                    ...editQuestion,
+                    correctAnswer: parseInt(event.target.value)
+                })
+                break
+            default:
+                break
+        }
+    }
+
 
     // Handling the delete modal
     const showDeleteModal = (id) => {
@@ -144,11 +217,12 @@ const AdminTable = () => {
                     currentPage={currentPage}
                     nextPage={nextPage}
                     prevPage={prevPage}
+                    currentQuestionsNumber={currentQuestions.length}
                 />
             </div>
             <AddModal show={addModalShow} onHide={hideAddModal} />
-            <EditModal show={editModalShow} onHide={hideEditModal} editQuestion={editQuestion} handleChange={handleChange} />
-            <DeleteModal show={deleteModalShow} onHide={hideDeleteModal} deleteQuestionID={deleteQuestionID} />
+            <EditModal show={editModalShow} onHide={hideEditModal} editQuestion={editQuestion} handleChange={handleChange} handleUpdateQuestion={handleUpdateQuestion} />
+            <DeleteModal show={deleteModalShow} onHide={hideDeleteModal} deleteQuestionID={deleteQuestionID} currentQuestionsNumber={currentQuestions.length} prevPage={prevPage} />
         </div>
     )
 }

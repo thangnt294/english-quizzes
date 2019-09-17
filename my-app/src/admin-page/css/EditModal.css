@@ -5,3 +5,15 @@
 .btn-warning {
     color: #fff;
 }
+
+.btn-warning:focus,
+.btn-warning:hover,
+.btn-warning:visited,
+.btn-warning:active {
+    outline: none;
+    color: #fff;
+}
+
+.update-button:active {
+    color: #fff;
+}

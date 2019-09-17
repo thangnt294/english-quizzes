@@ -85,8 +85,17 @@ class AddModal extends Component {
             correctAnswer: this.state.correctAnswer
         }
         Axios.post('http://localhost:5000/questions/add', newQuestion)
+            .then(res => {
+                this.setState({
+                    title: '',
+                    answers: ['', '', '', ''],
+                    correctAnswer: null
+                })
+                return res
+            })
             .then(res => console.log(res.data))
             .catch(err => console.log(err))
+        this.props.onHide()
     }
 
     render() {

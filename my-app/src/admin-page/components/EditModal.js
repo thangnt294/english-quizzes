@@ -25,7 +25,7 @@ const EditModal = ({ editQuestion, onHide, handleChange, handleUpdateQuestion, .
                     <p style={{ fontStyle: 'italic', marginTop: '3rem' }}>Please make changes before submitting</p>
                 </Modal.Body>
                 <Modal.Footer className="edit-footer">
-                    <Button variant="warning" className="custom-button" onClick={handleUpdateQuestion}>Update</Button>
+                    <Button variant="warning" className="custom-button update-button" onClick={handleUpdateQuestion}>Update</Button>
                     <Button variant="secondary" className="custom-button" onClick={onHide}>Cancel</Button>
                 </Modal.Footer>
             </Modal>
