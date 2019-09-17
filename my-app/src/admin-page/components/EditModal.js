@@ -2,13 +2,13 @@ import React from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import '../css/EditModal.css'
-import FormikQuestion from './FormikQuestion'
+import QuestionForm from './QuestionForm'
 
-const EditModal = (props) => {
+const EditModal = ({ editQuestion, onHide, handleChange, handleUpdateQuestion, ...rest }) => {
     return (
         <div>
             <Modal
-                {...props}
+                {...rest}
                 size="md"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
@@ -18,15 +18,15 @@ const EditModal = (props) => {
                     <Modal.Title id="contained-modal-title-vcenter">
                         <h1>Edit Question</h1>
                     </Modal.Title>
-                    <button type="button" className="close-button" onClick={props.onHide}>&times;</button>
+                    <button type="button" className="close-button" onClick={onHide}>&times;</button>
                 </Modal.Header>
                 <Modal.Body>
-                    <FormikQuestion />
+                    <QuestionForm title={editQuestion.title} answers={editQuestion.answers} correctAnswer={editQuestion.correctAnswer} handleChange={handleChange} />
                     <p style={{ fontStyle: 'italic', marginTop: '3rem' }}>Please make changes before submitting</p>
                 </Modal.Body>
                 <Modal.Footer className="edit-footer">
-                    <Button variant="warning" className="custom-button">Update</Button>
-                    <Button variant="secondary" className="custom-button" onClick={props.onHide}>Cancel</Button>
+                    <Button variant="warning" className="custom-button" onClick={handleUpdateQuestion}>Update</Button>
+                    <Button variant="secondary" className="custom-button" onClick={onHide}>Cancel</Button>
                 </Modal.Footer>
             </Modal>
         </div>

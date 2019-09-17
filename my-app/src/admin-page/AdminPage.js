@@ -16,6 +16,12 @@ const AdminTable = () => {
     const [addModalShow, setAddModalShow] = useState(false)
     const [editModalShow, setEditModalShow] = useState(false)
     const [deleteModalShow, setDeleteModalShow] = useState(false)
+    const [deleteQuestionID, setDeleteQuestionID] = useState(0)
+    const [editQuestion, setEditQuestion] = useState({
+        title: '',
+        answers: ['', '', '', ''],
+        correctAnswer: null
+    })
 
     // Fetching the questions
     useEffect(() => {
@@ -24,7 +30,7 @@ const AdminTable = () => {
             setAllQuestions(res.data)
         }
         fetchQuestions()
-    }, [])
+    }, [allQuestions])
 
     // Get current questions
     const indexOfLastQuestion = currentPage * questionsPerPage
@@ -67,17 +73,30 @@ const AdminTable = () => {
     }
 
     // Handling the edit modal
-    const showEditModal = () => {
+    const showEditModal = (id) => {
         setEditModalShow(true)
+        const foo = allQuestions.find(question => {
+            return id === question._id
+        })
+        setEditQuestion(foo)
     }
 
     const hideEditModal = () => {
         setEditModalShow(false)
     }
 
+    // Updating correct answers
+    const handleChange = (event) => {
+        setEditQuestion({
+            ...editQuestion,
+            correctAnswer: parseInt(event.target.value)
+        })
+    }
+
     // Handling the delete modal
-    const showDeleteModal = () => {
+    const showDeleteModal = (id) => {
         setDeleteModalShow(true)
+        setDeleteQuestionID(id)
     }
 
     const hideDeleteModal = () => {
@@ -128,8 +147,8 @@ const AdminTable = () => {
                 />
             </div>
             <AddModal show={addModalShow} onHide={hideAddModal} />
-            <EditModal show={editModalShow} onHide={hideEditModal} />
-            <DeleteModal show={deleteModalShow} onHide={hideDeleteModal} />
+            <EditModal show={editModalShow} onHide={hideEditModal} editQuestion={editQuestion} handleChange={handleChange} />
+            <DeleteModal show={deleteModalShow} onHide={hideDeleteModal} deleteQuestionID={deleteQuestionID} />
         </div>
     )
 }
