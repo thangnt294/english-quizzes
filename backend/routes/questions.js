@@ -1,9 +1,10 @@
 const router = require('express').Router()
 const { questionValidation } = require('../validation')
+const verifyToken = require('../verifyToken')
 let Question = require('../models/questionsModel')
 
 // Get all questions
-router.get('/', (req, res) => {
+router.get('/', verifyToken, (req, res) => {
     Question.find()
         .then(questions => res.json(questions))
         .catch(err => res.status(400).json('Error: ' + err))
@@ -36,8 +37,8 @@ router.get('/10random', (req, res) => {
 })
 
 // Adding a new question
-router.post('/add', (req, res) => {
-    //Validate before adding
+router.post('/add', verifyToken, (req, res) => {
+    // Validate before adding
     const { error } = questionValidation(req.body)
     if (error) return res.status(400).send(error.details[0].message)
 
@@ -59,7 +60,11 @@ router.post('/add', (req, res) => {
 })
 
 // Update question
-router.put('/update/:id', (req, res) => {
+router.put('/update/:id', verifyToken, (req, res) => {
+    // Validate before updating
+    const { error } = questionValidation(req.body)
+    if (error) return res.status(400).send(error.details[0].message)
+
     const title = req.body.title
     const answers = req.body.answers
     const correctAnswer = req.body.correctAnswer
@@ -76,7 +81,7 @@ router.put('/update/:id', (req, res) => {
 })
 
 // Delete question
-router.delete('/delete/:id', (req, res) => {
+router.delete('/delete/:id', verifyToken, (req, res) => {
     Question.findByIdAndDelete(req.params.id)
         .then(() => res.json('Question deleted'))
         .catch(err => res.status(400).json('Error: ' + err))

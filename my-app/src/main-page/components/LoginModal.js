@@ -1,6 +1,6 @@
 import React from 'react'
 import Modal from 'react-bootstrap/Modal'
-import FormikLogin from './FormikLogin'
+import LoginForm from './LoginForm'
 
 function LoginModal(props) {
     return (
@@ -18,7 +18,7 @@ function LoginModal(props) {
                 <button type="button" className="close-button" onClick={props.onHide}>&times;</button>
             </Modal.Header>
             <Modal.Body style={{ position: 'relative' }}>
-                <FormikLogin />
+                <LoginForm />
             </Modal.Body>
         </Modal >
     )
