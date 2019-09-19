@@ -94,7 +94,7 @@ function ModalBody(props) {
                 return (
                     <div>
                         <FontAwesomeIcon icon={['far', 'surprise']} className="icon-result" />
-                        <p>{'Impressive. You should consider being a teacher. Now how about trying again to get a perfect 10? ;)'}</p>
+                        <p>{'9 out of 10. Impressive. Go for 10 next? ;)'}</p>
                     </div>
                 )
                 // eslint-disable-next-line
@@ -103,7 +103,7 @@ function ModalBody(props) {
                 return (
                     <div>
                         <FontAwesomeIcon icon={['far', 'grin-stars']} className="icon-result" />
-                        <p>{'Spendid, marvelous, or should I say "supercalifragilisticexpialidocious"! (please don\'t ever use that word in real life)'}</p>
+                        <p>{'Spendid, marvelous, impeccable! You\'ve officially earned my respect ;) well done. Go rest now.'}</p>
                     </div>
                 )
                 // eslint-disable-next-line

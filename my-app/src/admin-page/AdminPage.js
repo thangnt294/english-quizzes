@@ -3,13 +3,12 @@ import QuestionsData from './components/QuestionsData'
 import Pagination from './components/Pagination'
 import Table from 'react-bootstrap/Table'
 import axios from 'axios'
-import './css/AdminPage.css'
 import AddModal from './components/AddModal'
 import EditModal from './components/EditModal'
 import DeleteModal from './components/DeleteModal'
-import Axios from 'axios'
+import './css/AdminPage.css'
 
-const AdminTable = () => {
+const AdminPage = ({ handleSetAdmin }) => {
     // Setting the states
     const [allQuestions, setAllQuestions] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
@@ -28,11 +27,15 @@ const AdminTable = () => {
 
     // Fetching the questions
     useEffect(() => {
+        let isMount = true
         const fetchQuestions = async () => {
             const res = await axios.get('http://localhost:5000/questions')
-            setAllQuestions(res.data)
+            if (isMount) {
+                setAllQuestions(res.data)
+            }
         }
         fetchQuestions()
+        return () => isMount = false
     }, [allQuestions])
 
     // Get current questions
@@ -92,7 +95,10 @@ const AdminTable = () => {
     }
 
     const handleUpdateQuestion = () => {
-        Axios.put('http://localhost:5000/questions/update/' + editQuestion._id, editQuestion)
+        const id = editQuestion._id
+        delete editQuestion._id
+        delete editQuestion.__v
+        axios.put('http://localhost:5000/questions/update/' + id, editQuestion)
             .then(res => {
                 hideEditModal()
                 return res
@@ -181,12 +187,18 @@ const AdminTable = () => {
         setDeleteModalShow(false)
     }
 
+    // Handling log out
+    const handleLogOut = () => {
+        localStorage.removeItem('jwtToken')
+        handleSetAdmin()
+    }
+
     return (
         <div className="table-container">
             <div className="table-content">
                 <div className="table-title">
                     <h1>Welcome back, Thang!</h1>
-                    <button className="logout-button">Log Out</button>
+                    <button className="logout-button" onClick={handleLogOut}>Log Out</button>
                 </div>
                 <div className="table-option">
                     <label>Show
@@ -232,4 +244,4 @@ const AdminTable = () => {
     )
 }
 
-export default AdminTable
+export default AdminPage

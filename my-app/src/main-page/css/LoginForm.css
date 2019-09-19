@@ -58,3 +58,26 @@
     transform: translateY(0);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
+
+.login-message {
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    margin: -2rem 0 0 0;
+    border-radius: 1rem;
+    justify-content: center;
+}
+
+.error-message {
+    background-color: #ffbaba;
+    color: #d8000c;
+}
+
+.success-message {
+    background-color: #dff2bf;
+    color: #4f8a10;
+}
+
+.login-message p {
+    margin: 0;
+}

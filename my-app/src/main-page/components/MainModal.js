@@ -21,13 +21,14 @@ class MainModal extends Component {
 
     // Get questions from database
     componentDidMount() {
-        axios.get('http://localhost:5000/questions/10random')
+        this.axiosCancelSource = axios.CancelToken.source()
+        axios.get('http://localhost:5000/questions/10random', { cancelToken: this.axiosCancelSource.token })
             .then(response =>
                 this.setState({
                     questionsBank: [...response.data]
                 })
             )
-            .catch(err => console.log('err'))
+            .catch(err => console.log(err))
     }
 
     // Replay
@@ -42,6 +43,10 @@ class MainModal extends Component {
                 )
                 .catch(err => console.log('err'))
         }
+    }
+
+    componentWillUnmount() {
+        this.axiosCancelSource.cancel('Component unmounted')
     }
 
     // Handle starting program

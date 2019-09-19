@@ -5,23 +5,21 @@ const { loginValidation } = require('../validation')
 let User = require('../models/userModel')
 
 router.post('/login', async (req, res) => {
-    // // Validate before logging in
-    // const { error } = loginValidation(req.body)
-    // if (error) return res.status(400).send(error.details[0].message)
+    // Validate before logging in
+    const { error } = loginValidation(req.body)
+    if (error) return res.status(400).send(error.details[0].message)
 
-    // // Check if the username exist
-    // const user = await User.findOne({ username: req.body.username })
-    // if (!user) return res.status(400).send('Invalid username or password')
+    // Check if the username exist
+    const user = await User.findOne({ username: req.body.username })
+    if (!user) return res.status(400).send('Invalid username or password')
 
-    // // Check if password is correct
-    // const validPass = await bcryptjs.compare(req.body.password, user.password)
-    // if (!validPass) return res.status(400).send('Invalid username or password')
+    // Check if password is correct
+    const validPass = await bcryptjs.compare(req.body.password, user.password)
+    if (!validPass) return res.status(400).send('Invalid username or password')
 
-    // // Create and assign a token
-    // const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET)
-    // res.header('auth-token', token).redirect('http://localhost:3000/admin')
-
-    res.redirect('http://localhost:3000/admin')
+    // Create and assign a token
+    const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET)
+    res.header('auth-token', token).status(200).send(token)
 })
 
 // Adding an admin
