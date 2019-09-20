@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
+const path = require('path')
 require('dotenv').config()
 
 const app = express()
@@ -8,6 +9,7 @@ const app = express()
 // Middleware
 app.use(cors())
 app.use(express.json())
+app.use(express.static(path.join(__dirname, 'client', 'build')))
 
 // Routing
 app.use('/questions', require('./routes/questions'))
@@ -21,4 +23,7 @@ mongoose.set('useFindAndModify', false)
 
 // Running Server
 const PORT = process.env.PORT || 5000
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+})
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))

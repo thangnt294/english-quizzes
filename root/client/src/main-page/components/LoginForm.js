@@ -8,7 +8,7 @@ import setAuthToken from '../../auth/setAuthToken'
 const LoginForm = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [isLoginError, setIsLoginError] = useState(false)
+    const [loginError, setLoginError] = useState('')
     const [attemptedLogin, setAttemptedLogin] = useState(false)
 
     const handleSetAdmin = useContext(SetAdminContext)
@@ -37,7 +37,7 @@ const LoginForm = () => {
         })
             .then(res => {
                 if (res.status === 200) {
-                    setIsLoginError(false)
+                    setLoginError('success')
                     const token = res.data
                     localStorage.setItem('jwtToken', token)
                     setAuthToken(token)
@@ -46,17 +46,21 @@ const LoginForm = () => {
                     }
                 }
             })
-            .catch(() => setIsLoginError(true))
+            .catch(() => setLoginError('fail'))
     }
 
     return (
         <form className="login-form">
             <h1>Welcome back, Thang!</h1>
             {attemptedLogin ?
-                (isLoginError ?
+                (loginError === 'fail' ?
                     <div className="login-message error-message"><p>Invalid username or password!</p></div>
                     :
-                    <div className="login-message success-message"><p>Yay it's really you!!!</p></div>)
+                    (loginError === 'success' ?
+                        <div className="login-message success-message"><p>Yay it's really you!!!</p></div>
+                        : null
+                    )
+                )
                 : null}
             <div className="input-container">
                 <FontAwesomeIcon icon={['fas', 'user']} className="form-icon" />
