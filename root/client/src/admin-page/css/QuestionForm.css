@@ -22,13 +22,20 @@
     background: #363945;
     box-shadow: inset 0 0 0 0.5rem white, 0 0 0 0.3rem;
 }
+
 .correct-radio:checked {
     background: #28a745;
     box-shadow: inset 0 0 0 0.4rem white, 0 0 0 0.3rem #28a745;
 }
+
+.correct-radio:checked + input[type='text'] {
+    color: #5cb85c;
+}
+
 .correct-radio:focus {
     outline: 0;
 }
+
 .question-field {
     width: 95%;
 }
