@@ -22,7 +22,7 @@ class MainModal extends Component {
     // Get questions from database
     componentDidMount() {
         this.axiosCancelSource = axios.CancelToken.source()
-        axios.get('http://localhost:5000/questions/10random', { cancelToken: this.axiosCancelSource.token })
+        axios.get('/questions/10random', { cancelToken: this.axiosCancelSource.token })
             .then(response =>
                 this.setState({
                     questionsBank: [...response.data]
@@ -34,7 +34,7 @@ class MainModal extends Component {
     // Replay
     componentDidUpdate() {
         if (this.state.shouldUpdate) {
-            axios.get('http://localhost:5000/questions/10random')
+            axios.get('/questions/10random')
                 .then(response =>
                     this.setState({
                         questionsBank: [...response.data],

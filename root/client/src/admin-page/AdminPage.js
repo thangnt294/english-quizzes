@@ -29,7 +29,7 @@ const AdminPage = ({ handleSetAdmin }) => {
     useEffect(() => {
         let isMount = true
         const fetchQuestions = async () => {
-            const res = await axios.get('http://localhost:5000/questions')
+            const res = await axios.get('/questions')
             if (isMount) {
                 setAllQuestions(res.data)
             }
@@ -98,7 +98,7 @@ const AdminPage = ({ handleSetAdmin }) => {
         const id = editQuestion._id
         delete editQuestion._id
         delete editQuestion.__v
-        axios.put('http://localhost:5000/questions/update/' + id, editQuestion)
+        axios.put('/questions/update/' + id, editQuestion)
             .then(res => {
                 hideEditModal()
                 return res

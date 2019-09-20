@@ -84,7 +84,7 @@ class AddModal extends Component {
             answers: [this.state.answers[0], this.state.answers[1], this.state.answers[2], this.state.answers[3]],
             correctAnswer: this.state.correctAnswer
         }
-        Axios.post('http://localhost:5000/questions/add', newQuestion)
+        Axios.post('/questions/add', newQuestion)
             .then(res => {
                 this.setState({
                     title: '',

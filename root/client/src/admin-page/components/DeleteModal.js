@@ -7,7 +7,7 @@ import Axios from 'axios'
 const DeleteModal = ({ deleteQuestionID, onHide, currentQuestionsNumber, prevPage, ...rest }) => {
 
     const handleDeleteQuestion = () => {
-        Axios.delete('http://localhost:5000/questions/delete/' + deleteQuestionID)
+        Axios.delete('/questions/delete/' + deleteQuestionID)
             .then(res => console.log(res.data))
             .catch(err => console.log(err))
         if (currentQuestionsNumber < 2) {

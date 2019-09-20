@@ -31,7 +31,7 @@ const LoginForm = () => {
     const handleSignIn = (e) => {
         setAttemptedLogin(true)
         e.preventDefault()
-        axios.post('http://localhost:5000/login', {
+        axios.post('/login', {
             username,
             password
         })
