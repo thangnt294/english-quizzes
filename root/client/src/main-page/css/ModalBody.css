@@ -59,3 +59,9 @@
     margin-bottom: 1.5rem;
     color: #5d7b93;
 }
+
+@media (max-width: 460px) {
+    .main-body div {
+        font-size: 1.2rem;
+    }
+}

@@ -18,7 +18,7 @@ function AboutModal(props) {
                 </Modal.Title>
                 <button type="button" className="close-button" onClick={props.onHide}>&times;</button>
             </Modal.Header>
-            <Modal.Body className="modal-body">
+            <Modal.Body className="modal-body about-body">
                 <div>
                     <p>Author: Nguyen Toan Thang</p>
                     <p>Special thanks to: Stack Overflow, Youtube, and of course, Google-sama</p>

@@ -24,3 +24,15 @@
 .modal-body p:nth-child(5) {
     font-style: italic;
 }
+
+@media (max-width: 993px) {
+    .about-body div {
+        font-size: 1.3rem !important;
+    }
+}
+
+@media (max-width: 460px) {
+    .about-body div {
+        font-size: 1.1rem !important;
+    }
+}

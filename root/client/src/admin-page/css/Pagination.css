@@ -35,3 +35,23 @@ nav {
 .spacing-text {
     letter-spacing: 1.5px;
 }
+
+@media (max-width: 880px) {
+    .pagination {
+        margin-right: 1rem;
+    }
+
+    .pagination-button {
+        padding: 0.4rem 1rem;
+    }
+}
+
+@media (max-width: 620px) {
+    .pagination {
+        margin-right: 0;
+    }
+
+    .pagination-button {
+        padding: 0.3rem 0.6rem;
+    }
+}

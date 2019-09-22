@@ -61,3 +61,66 @@
 .table-content {
     border: 1px solid #718096;
 }
+
+@media (max-width: 880px) {
+    .table-container,
+    .table-container .add-button,
+    .table-container .logout-button {
+        font-size: 1.2rem;
+    }
+
+    .table-container .add-button,
+    .table-container .logout-button {
+        padding: 1rem 2.5rem;
+    }
+
+    .table-container h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 785px) {
+    .table-container {
+        font-size: 1rem;
+    }
+
+    .select-box {
+        padding: 0.3rem 0.8rem;
+    }
+}
+
+@media (max-width: 620px) {
+    .table-container,
+    .table-container .add-button,
+    .table-container .logout-button {
+        font-size: 0.7rem;
+    }
+
+    .table-container .add-button,
+    .table-container .logout-button {
+        padding: 0.7rem 1.5rem;
+    }
+
+    .table-container h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .table-title {
+        padding: 1.3rem 1.7rem;
+    }
+
+    .select-box {
+        padding: 0.2rem 0.6rem;
+    }
+}
+
+@media (max-width: 470px) {
+    .table-container {
+        font-size: 0.5rem;
+    }
+
+    .select-box {
+        padding: 0.1rem 0.4rem;
+    }
+}

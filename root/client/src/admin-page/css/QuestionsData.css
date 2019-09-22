@@ -33,3 +33,27 @@
 .icon-trash:hover {
     color: #d11141;
 }
+
+@media (max-width: 880px) {
+    .icon-caret {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 785px) {
+    .icon-caret {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 620px) {
+    .icon-caret {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 470px) {
+    .icon-caret {
+        font-size: 0.7rem;
+    }
+}

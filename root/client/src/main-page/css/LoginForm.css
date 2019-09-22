@@ -81,3 +81,20 @@
 .login-message p {
     margin: 0;
 }
+
+@media (max-width: 460px) {
+    .login-form {
+        width: 60%;
+    }
+
+    .login-form h1 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .login-button {
+        margin-top: 1rem;
+        padding: 1rem 5rem;
+        font-size: 1rem;
+    }
+}

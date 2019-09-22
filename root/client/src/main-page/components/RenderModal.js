@@ -17,16 +17,16 @@ function RenderModal(props) {
             centered
             dialogClassName="main-modal"
         >
-            <Modal.Header className="modal-header bg-primary">
+            <Modal.Header className="bg-primary">
                 <Modal.Title id="contained-modal-title-vcenter" className="modal-title">
                     <ModalTitle count={count} isStart={isStart} isFinish={isFinish} />
                 </Modal.Title>
                 <button type="button" className="close-button" onClick={props.onHide}>&times;</button>
             </Modal.Header>
-            <Modal.Body className="modal-body">
+            <Modal.Body className="main-body">
                 <ModalBody handleChooseAnswer={handleChooseAnswer} questionState={questionState} />
             </Modal.Body>
-            <Modal.Footer className="modal-footer">
+            <Modal.Footer>
                 <ModalFooter
                     startProgram={startProgram}
                     questionState={questionState}
