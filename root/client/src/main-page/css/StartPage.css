@@ -100,21 +100,21 @@ button:focus {
 
 @media (max-width: 640px) {
     .title > h1 {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
     }
 
     .title > h3 {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 
     .main-button,
     .main-button:visited {
-        padding: 1rem 3rem;
-        font-size: 1rem;
+        padding: 1.2rem 3.5rem;
+        font-size: 1.2rem;
     }
 
     .login-text > p {
-        font-size: 0.5rem;
+        font-size: 0.7rem;
     }
 
     .login-text {

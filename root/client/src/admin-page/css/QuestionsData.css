@@ -50,10 +50,26 @@
     .icon-caret {
         font-size: 0.9rem;
     }
+
+    .icon-edit {
+        margin-right: 0.7rem;
+    }
+
+    .icon-trash {
+        margin-left: 0.7rem;
+    }
 }
 
 @media (max-width: 470px) {
     .icon-caret {
         font-size: 0.7rem;
+    }
+
+    .icon-edit {
+        margin-right: 0.5rem;
+    }
+
+    .icon-trash {
+        margin-left: 0.5rem;
     }
 }
